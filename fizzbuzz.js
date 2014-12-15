@@ -28,6 +28,12 @@ var wordArrays = [], ii, len;
 for (ii = 0, len = wordInput.length; ii < len; ii += rowCount) {
     wordArrays.push(wordInput.slice(ii, ii + rowCount));
 }
+// handle case where there's insufficient columns
+if (len > 1 && wordArrays.length < columnCount) {
+	var element = wordArrays.pop();
+	wordArrays.push([element[0],' ']);
+	wordArrays.push([element[1],' ']);	
+}
 // transpose the array into the right output format
 var newArray = wordArrays[0].map(function(col, i) { 
   return wordArrays.map(function(row) { 
